@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es-CL">
 <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Forest Wiki</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css.bs/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'core/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'core/css.bs/bootstrap.min.css'%}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="index.html">INICIO</a>
+                    <a id="barra_nav" class="nav-link" href="{% url 'index' %}">INICIO</a>
                   </li>
                   <li class="nav-item">
                     <a id="barra_nav" class="nav-link" href="#">FORO</a>
@@ -52,7 +53,7 @@
     <!-- Contenido -->
     <div class="contenedor">
             <div class="imagen">
-                <img src="Imgs/bosque.jpeg" class="img-fluid">
+                <img src="{% static 'core/imgs/bosque.jpeg'%}" class="img-fluid">
             </div>
             <div class="formulario">
                 <fomr>

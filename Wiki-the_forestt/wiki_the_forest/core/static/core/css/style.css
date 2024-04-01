@@ -1,0 +1,44 @@
+#nav{
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+.imagenprincipal{
+    margin: 0;
+    padding: 0;
+}
+#logo{
+    color:#edb60e;
+}
+
+#barra_nav{
+    color: rgb(237, 237, 237);
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+}
+.imagen {
+    flex: 1;
+    margin: 0;
+    margin-right: 10px; /* Espacio entre la imagen y el formulario */
+}
+.formulario {
+    flex: 1;
+    padding: 0 50px 0 0;
+}
+
+.titulo_form{
+    font-size: 3rem;
+    text-align: center;
+    color: antiquewhite;
+}
+
+.text_form{
+    color: antiquewhite;
+}
+
+*{
+    font-size: 0.9rem;
+}

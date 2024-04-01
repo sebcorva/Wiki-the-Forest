@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es-CL">
 <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Forest Wiki</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css.bs/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'core/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'core/css.bs/bootstrap.min.css'%}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
@@ -33,7 +34,7 @@
                     <a id="barra_nav" class="nav-link" href="#">REGISTRARSE</a>
                   </li>
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="iniciar_sesion.html">INICIAR SESION</a>
+                    <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
                   </li>
                   <li class="nav-item">
                     <a id="barra_nav" class="nav-link" href="#">MI CUENTA</a>
@@ -52,7 +53,7 @@
     <!-- banner -->
     <div class=" mb-2 bg-dark text-white">
         <div class="card text-bg-dark">
-            <img src="Imgs/banner.png" class="card-img" alt="">
+            <img src="{% static 'core/imgs/banner.png'%}" class="card-img" alt="">
             <div >
                 <div class="card-img-overlay" style="padding-top: 15%;">
                     <h5 class="card-title">The Forest Wiki</h5>
