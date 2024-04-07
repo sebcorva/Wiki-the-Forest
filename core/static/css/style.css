@@ -39,6 +39,10 @@
     color: antiquewhite;
 }
 
+.form-label{
+    color: antiquewhite;
+}
+
 *{
     font-size: 0.9rem;
 }

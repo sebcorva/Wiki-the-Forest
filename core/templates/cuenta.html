@@ -34,18 +34,21 @@
                     <li class="nav-item">
                         <a id="barra_nav" class="nav-link" href="#">DIRECCIÓN</a>
                     </li>
-                    <li class="nav-item">
-                        <a id="barra_nav" class="nav-link" href="#">REGISTRARSE</a>
-                    </li>
-                    <li class="nav-item">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                        <a id="barra_nav" class="nav-link" href="{% url 'cuenta' %}">MI CUENTA</a>
+                        </li>
+                        <li class="nav-item">
+                        <a id="barra_nav" class="nav-link" href=" ">SALIR</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
                         <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="barra_nav" class="nav-link" href="#">MI CUENTA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="barra_nav" class="nav-link" href="#">ADMIN</a>
-                    </li>
+                        </li>
+                        <li class="nav-item">
+                        <a id="barra_nav" class="nav-link" href="{% url 'registro' %}">REGISTRARSE</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="BUSCAR" aria-label="Search">
@@ -58,15 +61,19 @@
     <div class="container ">
         <div class="row d-flex col-12">
             <div class="m-auto col-8  text-white border rounded p-3">
-                <h2>Mi cuenta:</h2>
-                <div>
-                    {% for us in usuario %}
-                    <p>Nombre: {{us.nombre}}</p>
-                    <p>Apellido: {{us.apellido}}</p>
-                    <p>Correo: {{us.correo}}</p>
-                    {% endfor %}
-                </div>
-                </table>
+                {% if request.user.is_authenticated %}
+                    <h2>Mi cuenta:</h2>
+                    <div>
+                        {% for us in usuario %}
+                        <p>Nombre: {{us.nombre}}</p>
+                        <p>Apellido: {{us.apellido}}</p>
+                        <p>Correo: {{us.correo}}</p>
+                        {% endfor %}
+                    </div>
+                    </table>
+                {% else %}
+                <h2>No registrado</h2>
+                {% endif %}
 
             </div>
         </div>

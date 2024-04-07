@@ -33,18 +33,23 @@
           <li class="nav-item">
             <a id="barra_nav" class="nav-link" href="#">DIRECCIÓN</a>
           </li>
-          <li class="nav-item">
-            <a id="barra_nav" class="nav-link" href="#">REGISTRARSE</a>
-          </li>
-          <li class="nav-item">
-            <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
-          </li>
-          <li class="nav-item">
-            <a id="barra_nav" class="nav-link" href="{% url 'cuenta' %}">MI CUENTA</a>
-          </li>
-          <li class="nav-item">
-            <a id="barra_nav" class="nav-link" href="#">ADMIN</a>
-          </li>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a id="barra_nav" class="nav-link" href="{% url 'cuenta' %}">MI CUENTA</a>
+            </li>
+            <li class="nav-item">
+              <a id="barra_nav" class="nav-link" href=" ">SALIR</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
+            </li>
+            <li class="nav-item">
+              <a id="barra_nav" class="nav-link" href="{% url 'registro' %}">REGISTRARSE</a>
+            </li>
+          {% endif %}
+            
+          
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="BUSCAR" aria-label="Search">
