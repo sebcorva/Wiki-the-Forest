@@ -34,13 +34,16 @@
                     <a id="barra_nav" class="nav-link" href="#">REGISTRARSE</a>
                   </li>
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
+                    <a id="barra_nav" class="nav-link" href="{% url 'login' %}">INICIAR SESION</a>
                   </li>
                   <li class="nav-item">
                     <a id="barra_nav" class="nav-link" href="#">MI CUENTA</a>
                   </li>
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="#">ADMIN</a>
+                    <form action="{% url 'logout' %}" method="post">
+                      {% csrf_token %}
+                      <button class="btn btn-outline-danger" type="submit">Cerrar Sesión</button>
+                    </form>
                   </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -58,6 +61,9 @@
                 <div class="card-img-overlay" style="padding-top: 15%;">
                     <h5 class="card-title">The Forest Wiki</h5>
                     <p class="card-text">Pagina Oficial de the Forest creada por Programadores de Duoc Uc fanes del Juego, !Descubre y comparte tus conocimientos!</p>
+                    {% if request.user.is_authenticated %}<div class="alert alert-secondary w-25" role="alert">Bienvenido a tu sesión.</div>
+                    {% else %}<div class="alert alert-warning w-25" role="alert">Sesión no ha sido iniciada.</div>
+                    {% endif %}
                     <button type="button" class="btn btn-secondary">Compra the Forest</button>
                   </div>
             </div>

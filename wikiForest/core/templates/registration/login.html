@@ -34,13 +34,16 @@
                     <a id="barra_nav" class="nav-link" href="#">REGISTRARSE</a>
                   </li>
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
+                    <a id="barra_nav" class="nav-link" href="{% url 'login' %}">INICIAR SESION</a>
                   </li>
                   <li class="nav-item">
                     <a id="barra_nav" class="nav-link" href="#">MI CUENTA</a>
                   </li>
                   <li class="nav-item">
-                    <a id="barra_nav" class="nav-link" href="#">ADMIN</a>
+                    <form action="{% url 'logout' %}" method="post">
+                      {% csrf_token %}
+                      <button  class="btn btn-outline-danger" type="submit">Cerrar Sesión</button>
+                    </form>
                   </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -56,25 +59,38 @@
                 <img src="{% static '/Imgs/bosque.jpeg' %}" class="img-fluid">
             </div>
             <div class="formulario">
-                <fomr>
+              <div class="mb-2 text-white">
+                {% if form.errors %}
+                <div class="alert alert-warning w-25" role="alert">Usuario y contraseña no coinciden. Intentalo de nuevo.</div>
+                {% endif %}
+
+                  {% if request.user.is_authenticated %}
+                  <div class="alert alert-secondary w-25" role="alert">Ya ha iniciado sesión.</div>
+                  {% else %}
+                  <div class="alert alert-secondary w-25" role="alert">Sesión no ha sido iniciada.</div>
+                  {% endif %}
+
+              </div>
+                <form action="{% url 'login' %}" method="POST">
+                  {% csrf_token %}
                     <p class="titulo_form">Bienvenido Ingresa tu Usuario</p>
                     <div class="text_form">
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ejemplo@gmail.com" aria-describedby="emailHelp">     
-                    </div>
+                      {{ form.username.label_tag }}<br>
+                      {{ form.username }}
                     <div class="text_form">
-                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingresa contraseña">
+                      {{ form.password.label_tag }}<br>
+                        {{ form.password }}
                     </div>
                     <div  class="text_form" class="form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Mostrar contraseña</label>
                     </div>
                     <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+                        <button type="submit" value ="login" class="btn btn-primary">Iniciar sesion</button>
+                        <input type="hidden" name="next" value="{{ next }}">
                     </div>
                     
-                </fomr>
+                </form>
             </div>
     </div>
     <!-- estos no necesitan static, de hecho, ponerles static generan mensajes de error en la consola, aunque todo corra bien-->
