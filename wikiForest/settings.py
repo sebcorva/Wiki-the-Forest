@@ -56,7 +56,7 @@ ROOT_URLCONF = 'wikiForest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'c##prueba',
+        'USER': 'c##prueba2',   #c##prueba2
         'PASSWORD': 'prueba',
         'TEST':{
             'USER': 'default_test',
@@ -131,3 +131,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'core/static'), )
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

@@ -1,7 +1,12 @@
-from django.forms import ModelForm
-from .models import Tabla_Usuario
+from django import forms
+from core.models import Usuario
 
-class UserForm(ModelForm):
+class IniciarForm(forms.ModelForm):
     class Meta:
-        model = Tabla_Usuario
-        fields = ['idUsuario','nombre', 'apellido', 'clave', 'correo', 'idRol']
+        model = Usuario
+        fields = ['correo', 'clave']
+
+class RegistroForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['nombre', 'apellido', 'correo', 'clave']

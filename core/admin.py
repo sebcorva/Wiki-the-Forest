@@ -1,7 +1,8 @@
 from django.contrib import admin
+from core.models import Usuario
 
 # Register your models here.
-from .models import Tabla_Rol, Tabla_Usuario
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ['correo', 'clave']
 
-admin.site.register(Tabla_Usuario)
-admin.site.register(Tabla_Rol)
+admin.site.register(Usuario, UsuarioAdmin)

@@ -38,12 +38,13 @@
                         <li class="nav-item">
                         <a id="barra_nav" class="nav-link" href="{% url 'cuenta' %}">MI CUENTA</a>
                         </li>
-                        <li class="nav-item">
-                        <a id="barra_nav" class="nav-link" href=" ">SALIR</a>
-                        </li>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-danger" type="submit">Cerrar Sesión</button>
+                          </form>
                     {% else %}
                         <li class="nav-item">
-                        <a id="barra_nav" class="nav-link" href="{% url 'iniciar_sesion' %}">INICIAR SESION</a>
+                        <a id="barra_nav" class="nav-link" href="#">INICIAR SESION</a>
                         </li>
                         <li class="nav-item">
                         <a id="barra_nav" class="nav-link" href="{% url 'registro' %}">REGISTRARSE</a>
@@ -61,19 +62,20 @@
     <div class="container ">
         <div class="row d-flex col-12">
             <div class="m-auto col-8  text-white border rounded p-3">
-                {% if request.user.is_authenticated %}
+                {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
                     <h2>Mi cuenta:</h2>
                     <div>
-                        {% for us in usuario %}
-                        <p>Nombre: {{us.nombre}}</p>
-                        <p>Apellido: {{us.apellido}}</p>
-                        <p>Correo: {{us.correo}}</p>
+                        {% for usuario in usuarios %}
+                        <p>Nombre: {{usuario.nombre}}</p>
+                        <p>Apellido: {{usuario.apellido}}</p>
+                        <p>Correo: {{usuario.correo}}</p>
+                        <button name="modificar" value="{{ usuario.id}}">Modificar usuario</button>
                         {% endfor %}
+                        
                     </div>
-                    </table>
-                {% else %}
+                {% comment %} {% else %}
                 <h2>No registrado</h2>
-                {% endif %}
+                {% endif %} {% endcomment %}
 
             </div>
         </div>

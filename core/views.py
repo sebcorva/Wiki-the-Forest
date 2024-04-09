@@ -1,29 +1,30 @@
 from django.shortcuts import render
-from .models import Tabla_Usuario
-from .forms import UserForm
+from django.contrib.auth import logout
+from core.models import Usuario
+from core.forms import IniciarForm, RegistroForm
 
 # Create your views here.
 def inicio(request):
     return render(request, 'index.html')
 
-def iniciar_sesion(request):
-    return render(request, 'iniciar_sesion.html')
+def login(request):
+    return render(request, 'accounts/login.html')
 
-def registro(request):
-    datos = {
-        'form' : UserForm()
-    }
-    if request.method=='POST':
-        formulario =UserForm(request.POST)
-        if formulario.is_valid:
-            formulario.save()
-            datos['mensaje'] = "Usuario creado exitosamente"
-
-    return render(request, 'registro.html', datos)
+def logout_view(request):
+    logout(request)
 
 def cuenta(request):
-    usuario = Tabla_Usuario.objects.all()
-    datos = {
-        'usuario': usuario
-    }
-    return render(request, 'cuenta.html', datos)
+    context = {}
+    usuarios = Usuario.objects.all()
+    context['usuarios'] = usuarios
+    return render(request, 'cuenta.html', context)
+
+def registro(request):
+    context = {}
+    formRegistro = RegistroForm()
+    context['formRegistro'] = formRegistro
+    if request.method == 'POST':
+        if 'guardar' in request.POST:
+            formRegistro = RegistroForm(request.POST)
+            formRegistro.save()
+    return render(request, 'registro.html', context)
